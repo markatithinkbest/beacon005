@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/mark/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/home/mark/AndroidStudioProjects/3/BleBeaconSetting-master/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-56b99ad86ec66cec3e8f4d017aacbfeed1ff0273.jar" />
+    </item>
+    <item
+        jar="/home/mark/AndroidStudioProjects/3/BleBeaconSetting-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/mark/AndroidStudioProjects/3/BleBeaconSetting-master/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-6402a1ff6d5cac899a3cb3e3f26e40c24cb0bc82.jar" />
+    </item>
+    <item
+        jar="/home/mark/AndroidStudioProjects/3/BleBeaconSetting-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/mark/AndroidStudioProjects/3/BleBeaconSetting-master/app/build/intermediates/pre-dexed/debug/classes-be5a429af0baa5730e2bf36c27a88f0626338807.jar" />
+    </item>
+
+</items>

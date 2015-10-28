@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyEditTextstyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/green</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+
+    </style>
+    <style name="ReadOnlyStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/lightgray</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+
+
+
+    </style>
+
+
+</resources>
