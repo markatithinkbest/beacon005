@@ -48,6 +48,8 @@ import tw.com.ami.minibeaconsetting.R;
 public class MainActivity extends Activity {
 
     protected static final String TAG = "MiniBeacon";
+    protected static final String TAG2 = "markchen";
+
     protected static final boolean IS_DEBUG = true;
 
     private Context mContext;
@@ -541,10 +543,13 @@ public class MainActivity extends Activity {
         if (IS_DEBUG) Log.d(TAG, "+++ onClickBtnSetMajorId +++");
 
         String id = mEdTxMajorId.getText().toString();
-        int intId=Integer.parseInt(id);
-        Log.d(TAG, "================> intId is "+intId);
+        if (IS_DEBUG) Log.d(TAG2, "onClickBtnSetMajorId ==>" + id);
 
-        if (intId<0 || intId>65535){
+
+        int intId = Integer.parseInt(id);
+        if (IS_DEBUG) Log.d(TAG2, "onClickBtnSetMajorId ==>" + intId);
+
+        if (intId < 0 || intId > 65535) {
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("Invalid value");
             alertDialog.setMessage("The value must be between 0 and 65535.");
@@ -553,13 +558,28 @@ public class MainActivity extends Activity {
 // here you can add functions
                 }
             });
-        //    alertDialog.setIcon(R.drawable.icon);
+            //    alertDialog.setIcon(R.drawable.icon);
             alertDialog.show();
             return;
         }
-        byte[] byteId=ByteBuffer.allocate(2).putInt(intId).array();
-        Log.d(TAG, "================> byteId is "+byteId[0]+" "+byteId[1]);
 
+        if (IS_DEBUG) Log.d(TAG2, "================>to get byte array ");
+
+        //  byte[] byteId=ByteBuffer.allocate(4).putInt(intId).array();
+        //  if (IS_DEBUG) Log.d(TAG2, "================> byteId is "+byteId[0]+" "+byteId[1]+byteId[2]+" "+byteId[3]);
+        byte[] byteId = Util.get2Bytes(intId);
+        int cnt=0;
+        for (byte b : byteId) {
+            if (IS_DEBUG) Log.d(TAG, ">>>>---------------------------- id byte[" + cnt + "]=" + b);
+            cnt++;
+        }
+
+        if (mChores.setMajorId(byteId)){
+
+        }else {
+            Log.e(TAG, "onClickBtnSetMajorId() : Fail to write characteristic");
+        }
+        if (true) return;
 
 
         if (null != id) {
@@ -576,6 +596,13 @@ public class MainActivity extends Activity {
             }
 
             byte[] tmp = convertHexStringToByte(id);
+
+            int cnt2 = 0;
+            for (byte b : tmp) {
+                if (IS_DEBUG) Log.d(TAG, "---------------------------- id byte[" + cnt2 + "]=" + b);
+                cnt2++;
+            }
+
 
             if (null != tmp) {
                 if (!mChores.setMajorId(tmp))

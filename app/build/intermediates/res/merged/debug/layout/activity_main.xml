@@ -103,10 +103,12 @@
         <EditText
             android:id="@+id/edtx_major_id"
             style="@style/MyEditTextstyle"
-            android:inputType="number"
+            android:digits="0123456789ABCDEF"
+           
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+
 
             android:text="@string/default_major_id" />
 
