@@ -30,6 +30,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -553,12 +554,6 @@ public class MainActivity extends Activity {
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("Invalid value");
             alertDialog.setMessage("The value must be between 0 and 65535.");
-            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-// here you can add functions
-                }
-            });
-            //    alertDialog.setIcon(R.drawable.icon);
             alertDialog.show();
             return;
         }
@@ -574,9 +569,20 @@ public class MainActivity extends Activity {
             cnt++;
         }
 
+
+
         if (mChores.setMajorId(byteId)){
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Update Successfully!");
+            alertDialog.setMessage("Current Major ID is "+intId+".");
+            alertDialog.show();
 
         }else {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Failed to update");
+            alertDialog.setMessage("Please check connection and try again!");
+            alertDialog.show();
+
             Log.e(TAG, "onClickBtnSetMajorId() : Fail to write characteristic");
         }
         if (true) return;
@@ -620,6 +626,72 @@ public class MainActivity extends Activity {
         if (IS_DEBUG) Log.d(TAG, "+++ onClickBtnSetMinorId +++");
 
         String id = mEdTxMinorId.getText().toString();
+        int intId = Integer.parseInt(id);
+        if (IS_DEBUG) Log.d(TAG2, "onClickBtnSetMajorId ==>" + intId);
+
+        if (intId < 0 || intId > 65535) {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Invalid value");
+//            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    // User clicked OK button
+//                }
+//            });
+            alertDialog.setMessage("The value must be between 0 and 65535.");
+            alertDialog.show();
+            return;
+        }
+
+        if (IS_DEBUG) Log.d(TAG2, "================>to get byte array ");
+
+        //  byte[] byteId=ByteBuffer.allocate(4).putInt(intId).array();
+        //  if (IS_DEBUG) Log.d(TAG2, "================> byteId is "+byteId[0]+" "+byteId[1]+byteId[2]+" "+byteId[3]);
+        byte[] byteId = Util.get2Bytes(intId);
+        int cnt=0;
+        for (byte b : byteId) {
+            if (IS_DEBUG) Log.d(TAG, ">>>>---------------------------- id byte[" + cnt + "]=" + b);
+            cnt++;
+        }
+
+
+
+        if (mChores.setMinorId(byteId)){
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Update Successfully!");
+            alertDialog.setMessage("Current Minor ID is " + intId + ".");
+          //  alertDialog.setButton(1,"OK", ne);
+
+//            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    // User clicked OK button
+//                }
+//            });
+
+            alertDialog.show();
+
+        }else {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Failed to update");
+            alertDialog.setMessage("Please check connection and try again!");
+//            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    // User clicked OK button
+//                }
+//            });
+            alertDialog.show();
+
+            Log.e(TAG, "onClickBtnSetMajorId() : Fail to write characteristic");
+        }
+        if (true) return;
+
+
+
+
+
+
+
+
+
 
         if (null != id) {
 
